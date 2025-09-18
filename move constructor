@@ -1,0 +1,28 @@
+#include <iostream>
+#include<utility>
+using namespace std;
+
+class Box{ 
+    public:
+    int weight;
+    Box(int w){
+        weight= w;
+        cout<< "constructor called\n";
+    }
+    Box(Box&& source ){
+        weight= source.weight;
+        source.weight= 0;
+        cout<< "move constructor called\n";
+    }
+    void show(){
+        cout<<"Weight:"<< weight<< endl;
+    }
+};
+int main(){
+    Box b1(50);
+    Box b2= std::move(b1);
+    cout<<"\nAfter move:\n";
+    cout<<"b1:";b1.show();
+    cout<<"b2:";b2.show();
+    return 0;
+}
